@@ -15,10 +15,13 @@ import { WordService } from 'src/app/services/word/word.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class WordComponent implements OnInit, OnDestroy {
-  currentTheme: string = '';
-  currentWord: string[] = [];
-  guessedWordPart: string = '';
-  pressedLetters: string = '';
+  public currentTheme: string = '';
+
+  public currentWord: string[] = [];
+
+  public guessedWordPart: string = '';
+
+  public pressedLetters: string = '';
 
   private destroy = new Subject<void>();
 
@@ -27,12 +30,12 @@ export class WordComponent implements OnInit, OnDestroy {
     private wordService: WordService
   ) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.setThemeAndWord();
     this.watchGuesses();
   }
 
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     this.destroy.next();
     this.destroy.complete();
   }

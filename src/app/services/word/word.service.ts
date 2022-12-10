@@ -11,15 +11,22 @@ import { ModalService } from '../modal/modal.service';
   providedIn: 'root'
 })
 export class WordService {
-  attemptsSpent$: Observable<number>;
-  currentCategory$: Observable<string>;
-  currentWord$: Observable<string>;
-  guessedWordPart$: Observable<string>;
+  public attemptsSpent$: Observable<number>;
+
+  public currentCategory$: Observable<string>;
+
+  public currentWord$: Observable<string>;
+
+  public guessedWordPart$: Observable<string>;
 
   private attemptsSpent = new BehaviorSubject<number>(0);
+
   private currentCategory = new BehaviorSubject<string>('');
+
   private currentWord = new BehaviorSubject<string>('');
+
   private guessedWordPart = new BehaviorSubject<string>('');
+
   private words: WordsCategories = {};
 
   constructor(
@@ -32,7 +39,7 @@ export class WordService {
     this.guessedWordPart$ = this.guessedWordPart.asObservable();
   }
 
-  getWords$(): Observable<WordsCategories> {
+  public getWords$(): Observable<WordsCategories> {
     return this.httpClient.get<WordsCategories>('/assets/words.json').pipe(
       tap((words) => {
         this.words = words;
@@ -40,7 +47,7 @@ export class WordService {
     );
   }
 
-  setCurrentCategoryAndWord(words: WordsCategories): void {
+  public setCurrentCategoryAndWord(words: WordsCategories): void {
     const randomCategory = getRandomArrayItem(Object.entries(words));
     const randomCategoryName = randomCategory[0];
     const randomWord = getRandomArrayItem(randomCategory[1]).toLowerCase();
@@ -49,7 +56,7 @@ export class WordService {
     this.currentWord.next(randomWord);
   }
 
-  checkGuess(letter: Letter): void {
+  public checkGuess(letter: Letter): void {
     if (this.currentWord.getValue().includes(letter.value)) {
       this.guessedWordPart.next(this.guessedWordPart.getValue() + letter.value);
       this.checkWin();
@@ -59,11 +66,11 @@ export class WordService {
     }
   }
 
-  updateSpentAttempts(): void {
+  public updateSpentAttempts(): void {
     this.attemptsSpent.next(this.attemptsSpent.getValue() + 1);
   }
 
-  reset(): void {
+  public reset(): void {
     this.setCurrentCategoryAndWord(this.words);
     this.attemptsSpent.next(0);
     this.guessedWordPart.next('');

@@ -18,7 +18,7 @@ import { WordService } from 'src/app/services/word/word.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LettersComponent implements OnInit, AfterViewInit, OnDestroy {
-  letters: Letter[] = [];
+  public letters: Letter[] = [];
 
   private destroy$ = new Subject<void>();
 
@@ -28,20 +28,20 @@ export class LettersComponent implements OnInit, AfterViewInit, OnDestroy {
     private wordService: WordService
   ) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.setLetters();
   }
 
-  ngAfterViewInit(): void {
+  public ngAfterViewInit(): void {
     this.handleKeyboardKeys();
   }
 
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
   }
 
-  pressLetter(letter: Letter): void {
+  public pressLetter(letter: Letter): void {
     this.lettersService.pressLetter(letter);
     this.wordService.checkGuess(letter);
   }
@@ -51,8 +51,6 @@ export class LettersComponent implements OnInit, AfterViewInit, OnDestroy {
       .pipe(takeUntil(this.destroy$))
       .subscribe((letters) => {
         this.letters = letters;
-        console.log(this.letters);
-
         this.cdr.markForCheck();
       });
   }
@@ -66,10 +64,12 @@ export class LettersComponent implements OnInit, AfterViewInit, OnDestroy {
       .subscribe((event) => {
         const key = event.key.toLowerCase();
 
-        const letter = this.letters.find((letter) => letter.value === key);
+        const pressedLetter = this.letters.find(
+          (letter) => letter.value === key
+        );
 
-        if (letter) {
-          this.pressLetter(letter);
+        if (pressedLetter) {
+          this.pressLetter(pressedLetter);
         }
       });
   }

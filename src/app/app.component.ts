@@ -10,7 +10,7 @@ import { WordService } from './services/word/word.service';
 export class AppComponent implements OnInit {
   constructor(private wordService: WordService) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.startGame();
   }
 

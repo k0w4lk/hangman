@@ -22,6 +22,7 @@ export class HangmanComponent implements AfterViewInit, OnDestroy {
   private hangmanParts: QueryList<HangmanPartDirective>;
 
   private currentPartIndex = 0;
+
   private destroy = new Subject<void>();
 
   constructor(
@@ -29,7 +30,7 @@ export class HangmanComponent implements AfterViewInit, OnDestroy {
     private wordService: WordService
   ) {}
 
-  ngAfterViewInit(): void {
+  public ngAfterViewInit(): void {
     this.wordService.attemptsSpent$
       .pipe(takeUntil(this.destroy))
       .subscribe((value) => {
@@ -46,7 +47,7 @@ export class HangmanComponent implements AfterViewInit, OnDestroy {
       });
   }
 
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     this.destroy.next();
     this.destroy.complete();
   }

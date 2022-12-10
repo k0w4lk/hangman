@@ -23,11 +23,11 @@ export class EndgameDialogComponent implements AfterViewInit {
     private wordService: WordService
   ) {}
 
-  ngAfterViewInit(): void {
+  public ngAfterViewInit(): void {
     this.handleDialogClose();
   }
 
-  close(): void {
+  public close(): void {
     this.dialogRef.close();
   }
 

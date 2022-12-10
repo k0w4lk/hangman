@@ -6,7 +6,7 @@ import { Letter } from 'src/app/interfaces/letter';
   providedIn: 'root'
 })
 export class LettersService {
-  letters$: Observable<Letter[]>;
+  public letters$: Observable<Letter[]>;
 
   private letters = new BehaviorSubject<Letter[]>([]);
 
@@ -16,7 +16,7 @@ export class LettersService {
     this.generateLetters();
   }
 
-  pressLetter(pressedLetter: Letter): void {
+  public pressLetter(pressedLetter: Letter): void {
     const letters = this.letters.getValue().map((letter) => {
       if (letter.value === pressedLetter.value && !letter.pressed) {
         return { ...letter, pressed: true };
@@ -28,7 +28,7 @@ export class LettersService {
     this.letters.next(letters);
   }
 
-  generateLetters(): void {
+  public generateLetters(): void {
     const letters: Letter[] = [];
 
     for (let code = 97; code <= 122; code++) {

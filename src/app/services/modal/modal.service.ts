@@ -8,7 +8,7 @@ import { EndgameDialogComponent } from 'src/app/components/endgame-dialog/endgam
 export class ModalService {
   constructor(private dialog: Dialog) {}
 
-  openWinDialog(): void {
+  public openWinDialog(): void {
     this.dialog.open(EndgameDialogComponent, {
       data: {
         message: 'YOU WON!'
@@ -17,7 +17,7 @@ export class ModalService {
     });
   }
 
-  openLooseDialog(): void {
+  public openLooseDialog(): void {
     this.dialog.open(EndgameDialogComponent, {
       data: {
         message: 'YOU LOST!'

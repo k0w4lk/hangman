@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { EndgameDialogComponent } from './endgame-dialog.component';
 
 describe('EndgameDialogComponent', () => {
