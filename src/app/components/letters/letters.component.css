@@ -1,0 +1,29 @@
+.letters {
+  display: grid;
+  grid-template-columns: repeat(6, max-content);
+  gap: 8px;
+}
+
+.letter {
+  cursor: pointer;
+  border: 1px solid blue;
+  border-radius: 4px;
+  box-shadow: -1px -1px 1px grey;
+  height: 24px;
+  width: 24px;
+  line-height: 24px;
+  text-align: center;
+  padding: 0;
+  background-color: transparent;
+  text-transform: uppercase;
+}
+
+.letter:disabled {
+  box-shadow: none;
+  border-color: gray;
+  cursor: default;
+}
+
+.letter:not(:disabled):hover {
+  background-color: lightblue;
+}

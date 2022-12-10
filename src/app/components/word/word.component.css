@@ -1,0 +1,24 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 12px;
+}
+
+.category {
+  margin: 0;
+}
+
+.word {
+  display: flex;
+  column-gap: 8px;
+}
+
+.letter {
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  text-align: center;
+  text-transform: uppercase;
+  border-bottom: 2px solid black;
+}

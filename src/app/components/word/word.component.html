@@ -1,0 +1,9 @@
+<p class="category">Word category: {{ currentTheme }}</p>
+
+<div class="word">
+  <div *ngFor="let letter of currentWord" class="letter">
+    <ng-container *ngIf="guessedWordPart.includes(letter)">
+      {{ letter }}
+    </ng-container>
+  </div>
+</div>

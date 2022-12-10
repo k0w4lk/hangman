@@ -1,0 +1,10 @@
+<div class="letters">
+  <button
+    *ngFor="let letter of letters"
+    class="letter"
+    [disabled]="letter.pressed"
+    (click)="pressLetter(letter)"
+  >
+    {{ letter.value }}
+  </button>
+</div>
