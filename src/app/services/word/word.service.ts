@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { ATTEMPTS_COUNT } from 'src/app/constants/constants';
 import { Letter } from 'src/app/interfaces/letter';
+import { environment } from 'src/environments/environment';
 import { WordsCategories } from '../../interfaces/words-categories';
 import { getRandomArrayItem } from '../../utilities/random-array-item';
 import { ModalService } from '../modal/modal.service';
@@ -40,11 +41,13 @@ export class WordService {
   }
 
   public getWords$(): Observable<WordsCategories> {
-    return this.httpClient.get<WordsCategories>('/assets/words.json').pipe(
-      tap((words) => {
-        this.words = words;
-      })
-    );
+    return this.httpClient
+      .get<WordsCategories>(environment.url + '/assets/words.json')
+      .pipe(
+        tap((words) => {
+          this.words = words;
+        })
+      );
   }
 
   public setCurrentCategoryAndWord(words: WordsCategories): void {
